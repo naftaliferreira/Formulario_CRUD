@@ -33,6 +33,6 @@ frame_baixo = Frame(janela, width=310, height=403, bg=co1, relief="flat")
 frame_baixo.grid(row=1, column=0, sticky=NSEW, padx=0, pady=1)
 
 frame_direito = Frame(janela, width=588, height=403, bg=co1, relief="flat")
-frame_direito.grid(row=0, column=1, rowspan=2, padx=1, sticky=NSEW)
+frame_direito.grid(row=0, column=1, rowspan=2, padx=1, pady=1, sticky=NSEW)
 
 janela.mainloop()
