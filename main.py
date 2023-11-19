@@ -14,7 +14,7 @@ co8 = "#263238"  # + verde
 co9 = "#e9edf5"  # sky blue
 
 
-# criando janela
+################### criando janela
 
 janela = Tk()
 janela.title("")
@@ -24,7 +24,7 @@ janela.resizable(
     width=False, height=False
 )  # impede que a janela tenha o seu tamanho reajustado com o mouse
 
-# dividindo a janela
+################### dividindo a janela
 
 frame_cima = Frame(janela, width=310, height=50, bg=co2, relief="flat")
 frame_cima.grid(row=0, column=0)
@@ -35,7 +35,7 @@ frame_baixo.grid(row=1, column=0, sticky=NSEW, padx=0, pady=1)
 frame_direito = Frame(janela, width=588, height=403, bg=co1, relief="flat")
 frame_direito.grid(row=0, column=1, rowspan=2, padx=1, pady=1, sticky=NSEW)
 
-# label cima
+################### label cima
 app_nome = Label(
     frame_cima,
     text="Formulário de consultoria",
@@ -47,8 +47,9 @@ app_nome = Label(
 )
 app_nome.place(x=10, y=20)
 
-# Configurando frame baixo
-l_name = Label(
+################### Configurando frame baixo
+# Nome
+l_nome = Label(
     frame_baixo,
     text="Nome *",
     anchor=NW,
@@ -57,15 +58,85 @@ l_name = Label(
     fg=co4,
     relief="flat",
 )
-l_name.place(x=10, y=10)
+l_nome.place(x=10, y=10)
 
-e_name = Entry(
+e_name = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_name.place(x=15, y=40)
+
+# email
+l_email = Label(
     frame_baixo,
-    width=45,
-    justify="left",
-    relief="solid",
+    text="email *",
+    anchor=NW,
+    font=("Ivy 10 bold"),
+    bg=co1,
+    fg=co4,
+    relief="flat",
 )
-e_name.place(x=10, y=40)
+l_email.place(x=10, y=10)
+
+e_email = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_email.place(x=15, y=40)
+
+# telefone
+l_telefone = Label(
+    frame_baixo,
+    text="telefone *",
+    anchor=NW,
+    font=("Ivy 10 bold"),
+    bg=co1,
+    fg=co4,
+    relief="flat",
+)
+l_telefone.place(x=10, y=10)
+
+e_telefone = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_telefone.place(x=15, y=40)
+
+# Data da consulta
+l_nome = Label(
+    frame_baixo,
+    text="Data da consulta *",
+    anchor=NW,
+    font=("Ivy 10 bold"),
+    bg=co1,
+    fg=co4,
+    relief="flat",
+)
+l_nome.place(x=10, y=10)
+
+e_name = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_name.place(x=15, y=40)
+
+# Estado
+l_nome = Label(
+    frame_baixo,
+    text="Estado *",
+    anchor=NW,
+    font=("Ivy 10 bold"),
+    bg=co1,
+    fg=co4,
+    relief="flat",
+)
+l_nome.place(x=10, y=10)
+
+e_name = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_name.place(x=15, y=40)
+
+# Consulta sobre
+l_nome = Label(
+    frame_baixo,
+    text="Consulta sobre *",
+    anchor=NW,
+    font=("Ivy 10 bold"),
+    bg=co1,
+    fg=co4,
+    relief="flat",
+)
+l_nome.place(x=10, y=10)
+
+e_name = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_name.place(x=15, y=40)
 
 
 janela.mainloop()
