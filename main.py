@@ -47,5 +47,25 @@ app_nome = Label(
 )
 app_nome.place(x=10, y=20)
 
+# Configurando frame baixo
+l_name = Label(
+    frame_baixo,
+    text="Nome *",
+    anchor=NW,
+    font=("Ivy 10 bold"),
+    bg=co1,
+    fg=co4,
+    relief="flat",
+)
+l_name.place(x=10, y=10)
+
+e_name = Entry(
+    frame_baixo,
+    width=45,
+    justify="left",
+    relief="solid",
+)
+e_name.place(x=10, y=40)
+
 
 janela.mainloop()
