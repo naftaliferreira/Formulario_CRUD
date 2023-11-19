@@ -1,5 +1,10 @@
 # importando o tkinter
+from cgitb import text
 from tkinter import *
+from tkinter import font
+
+# importando tkcalendar
+from tkcalendar import Calendar, DateEntry
 
 ################# cores ###############
 co0 = "#f0f3f5"  # Preta
@@ -92,9 +97,9 @@ l_telefone.place(x=10, y=130)
 
 e_telefone = Entry(frame_baixo, width=45, justify="left", relief="solid")
 e_telefone.place(x=15, y=160)
-"""
+
 # Data da consulta
-l_datacon = Label(
+l_cal = Label(
     frame_baixo,
     text="Data da consulta *",
     anchor=NW,
@@ -103,10 +108,17 @@ l_datacon = Label(
     fg=co4,
     relief="flat",
 )
-l_datacon.place(x=10, y=10)
+l_cal.place(x=10, y=190)
 
-e_datacon = Entry(frame_baixo, width=45, justify="left", relief="solid")
-e_datacon.place(x=15, y=40)
+e_cal = DateEntry(
+    frame_baixo,
+    width=12,
+    background="darkblue",
+    foreground="white",
+    borderwidth=2,
+    year=2023,
+)
+e_cal.place(x=15, y=220)
 
 # Estado
 l_estado = Label(
@@ -120,9 +132,16 @@ l_estado = Label(
 )
 l_estado.place(x=10, y=10)
 
-e_estado = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_estado = DateEntry(
+    frame_baixo,
+    width=12,
+    background="darkblue",
+    foreground="white",
+    borderwidth=2,
+    year=2023,
+)
 e_estado.place(x=15, y=40)
-
+"""
 # Sobre
 l_sobre = Label(
     frame_baixo,
