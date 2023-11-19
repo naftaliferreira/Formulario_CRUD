@@ -73,10 +73,10 @@ l_email = Label(
     fg=co4,
     relief="flat",
 )
-l_email.place(x=10, y=10)
+l_email.place(x=10, y=70)
 
 e_email = Entry(frame_baixo, width=45, justify="left", relief="solid")
-e_email.place(x=15, y=40)
+e_email.place(x=15, y=100)
 
 # telefone
 l_telefone = Label(
@@ -88,13 +88,13 @@ l_telefone = Label(
     fg=co4,
     relief="flat",
 )
-l_telefone.place(x=10, y=10)
+l_telefone.place(x=10, y=130)
 
 e_telefone = Entry(frame_baixo, width=45, justify="left", relief="solid")
-e_telefone.place(x=15, y=40)
-
+e_telefone.place(x=15, y=160)
+"""
 # Data da consulta
-l_nome = Label(
+l_datacon = Label(
     frame_baixo,
     text="Data da consulta *",
     anchor=NW,
@@ -103,13 +103,13 @@ l_nome = Label(
     fg=co4,
     relief="flat",
 )
-l_nome.place(x=10, y=10)
+l_datacon.place(x=10, y=10)
 
-e_name = Entry(frame_baixo, width=45, justify="left", relief="solid")
-e_name.place(x=15, y=40)
+e_datacon = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_datacon.place(x=15, y=40)
 
 # Estado
-l_nome = Label(
+l_estado = Label(
     frame_baixo,
     text="Estado *",
     anchor=NW,
@@ -118,13 +118,13 @@ l_nome = Label(
     fg=co4,
     relief="flat",
 )
-l_nome.place(x=10, y=10)
+l_estado.place(x=10, y=10)
 
-e_name = Entry(frame_baixo, width=45, justify="left", relief="solid")
-e_name.place(x=15, y=40)
+e_estado = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_estado.place(x=15, y=40)
 
-# Consulta sobre
-l_nome = Label(
+# Sobre
+l_sobre = Label(
     frame_baixo,
     text="Consulta sobre *",
     anchor=NW,
@@ -133,10 +133,10 @@ l_nome = Label(
     fg=co4,
     relief="flat",
 )
-l_nome.place(x=10, y=10)
+l_sobre.place(x=10, y=10)
 
-e_name = Entry(frame_baixo, width=45, justify="left", relief="solid")
-e_name.place(x=15, y=40)
-
+e_sobre = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_sobre.place(x=15, y=40)
+"""
 
 janela.mainloop()
