@@ -108,7 +108,7 @@ l_cal = Label(
     fg=co4,
     relief="flat",
 )
-l_cal.place(x=10, y=190)
+l_cal.place(x=15, y=190)
 
 e_cal = DateEntry(
     frame_baixo,
@@ -143,17 +143,17 @@ e_estado.place(x=160, y=220)
 # Sobre
 l_sobre = Label(
     frame_baixo,
-    text="Consulta sobre *",
+    text="Informação extra *",
     anchor=NW,
     font=("Ivy 10 bold"),
     bg=co1,
     fg=co4,
     relief="flat",
 )
-l_sobre.place(x=10, y=10)
+l_sobre.place(x=15, y=260)
 
 e_sobre = Entry(frame_baixo, width=45, justify="left", relief="solid")
-e_sobre.place(x=15, y=40)
+e_sobre.place(x=15, y=290)
 
 
 janela.mainloop()
