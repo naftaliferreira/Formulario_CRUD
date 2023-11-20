@@ -157,7 +157,7 @@ e_sobre.place(x=15, y=290)
 
 # botão inserir
 
-b_ins = Button(
+b_insert = Button(
     frame_baixo,
     text="Inserir",
     width=10,
@@ -167,7 +167,35 @@ b_ins = Button(
     relief="raised",
     overrelief="ridge",
 )
-b_ins.place(x=15, y=340)
+b_insert.place(x=15, y=340)
+
+# botão atualizar
+
+b_update = Button(
+    frame_baixo,
+    text="Atualizar",
+    width=10,
+    font=("Ivy 9 bold"),
+    bg=co2,
+    fg=co1,
+    relief="raised",
+    overrelief="ridge",
+)
+b_update.place(x=110, y=340)
+
+# botão deletar
+
+b_delete = Button(
+    frame_baixo,
+    text="Deletar",
+    width=10,
+    font=("Ivy 9 bold"),
+    bg=co7,
+    fg=co1,
+    relief="raised",
+    overrelief="ridge",
+)
+b_delete.place(x=205, y=340)
 
 
 janela.mainloop()
