@@ -155,5 +155,19 @@ l_sobre.place(x=15, y=260)
 e_sobre = Entry(frame_baixo, width=45, justify="left", relief="solid")
 e_sobre.place(x=15, y=290)
 
+# botão inserir
+
+b_ins = Button(
+    frame_baixo,
+    text="Inserir",
+    width=10,
+    font=("Ivy 9 bold"),
+    bg=co6,
+    fg=co1,
+    relief="raised",
+    overrelief="ridge",
+)
+b_ins.place(x=15, y=340)
+
 
 janela.mainloop()
