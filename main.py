@@ -123,25 +123,23 @@ e_cal.place(x=15, y=220)
 # Estado
 l_estado = Label(
     frame_baixo,
-    text="Estado *",
+    text="Estado da consulta *",
     anchor=NW,
     font=("Ivy 10 bold"),
     bg=co1,
     fg=co4,
     relief="flat",
 )
-l_estado.place(x=10, y=10)
+l_estado.place(x=160, y=190)
 
-e_estado = DateEntry(
+e_estado = Entry(
     frame_baixo,
-    width=12,
-    background="darkblue",
-    foreground="white",
-    borderwidth=2,
-    year=2023,
+    width=20,
+    justify="left",
+    relief="solid",
 )
-e_estado.place(x=15, y=40)
-"""
+e_estado.place(x=160, y=220)
+
 # Sobre
 l_sobre = Label(
     frame_baixo,
@@ -156,6 +154,6 @@ l_sobre.place(x=10, y=10)
 
 e_sobre = Entry(frame_baixo, width=45, justify="left", relief="solid")
 e_sobre.place(x=15, y=40)
-"""
+
 
 janela.mainloop()
