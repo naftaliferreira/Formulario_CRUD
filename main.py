@@ -211,10 +211,8 @@ lista = [[1,'Joao Futi Muanda','joao@mail.com', 123456789, "12/19/2010", 'Normal
 
 tabela_head = ['ID','Nome',  'email','telefone', 'Data', 'Estado','Sobre']
 
-df_list = lista
 
 # Criando a tabela
-
 tree = ttk.Treeview(frame_direito, selectmode="extended", columns=tabela_head, show="headings")
 
 # vertical scrollbar
@@ -247,37 +245,6 @@ for col in tabela_head:
 
 for item in lista:
     tree.insert('', 'end', values=item)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
