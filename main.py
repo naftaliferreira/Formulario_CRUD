@@ -2,6 +2,7 @@
 from cgitb import text
 from tkinter import *
 from tkinter import font
+from tkinter import ttk
 
 # importando tkcalendar
 from tkcalendar import Calendar, DateEntry
@@ -210,24 +211,27 @@ lista = [[1,'Joao Futi Muanda','joao@mail.com', 123456789, "12/19/2010", 'Normal
 
 tabela_head = ['ID','Nome',  'email','telefone', 'Data', 'Estado','Sobre']
 
+df_list = lista
+
 # Criando a tabela
 
-tree = ttk.Treeview(frame_direita, selectmode="extended", columns=tabela_head, show="headings")
+tree = ttk.Treeview(frame_direito, selectmode="extended", columns=tabela_head, show="headings")
 
 # vertical scrollbar
 
-vsb = ttk.Scrollbar(frame_direita, orient="vertical", command=tree.yview)
+vsb = ttk.Scrollbar(frame_direito, orient="vertical", command=tree.yview)
 
 # horizontal scrollbar
 
-hsb = ttk.Scrollbar( frame_direita, orient="horizontal", command=tree.xview)
+hsb = ttk.Scrollbar( frame_direito, orient="horizontal", command=tree.xview)
 
 tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+
 tree.grid(column=0, row=0, sticky='nsew')
 vsb.grid(column=1, row=0, sticky='ns')
 hsb.grid(column=0, row=1, sticky='ew')
 
-frame_direita.grid_rowconfigure(0, weight=12)
+frame_direito.grid_rowconfigure(0, weight=12)
 
 
 hd=["nw","nw","nw","nw","nw","center","center"]
@@ -236,7 +240,7 @@ n=0
 
 for col in tabela_head:
     tree.heading(col, text=col.title(), anchor=CENTER)
-    adjust the column's width to the header string
+    #adjust the column's width to the header string
     tree.column(col, width=h[n],anchor=hd[n])
     
     n+=1
