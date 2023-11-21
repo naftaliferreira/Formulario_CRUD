@@ -197,5 +197,88 @@ b_delete = Button(
 )
 b_delete.place(x=205, y=340)
 
+################### frame direita
 
+lista = [[1,'Joao Futi Muanda','joao@mail.com', 123456789, "12/19/2010", 'Normal', 'gostaria de o consultar pessoalmente'],
+        [2,'Fortnato Mpngo', 'joao@mail.com', 123456789, "12/19/2010", 'Normal', 'gostaria de o consultar pessoalmente'],
+        [3,'Usando Python',  'joao@mail.com', 123456789, "12/19/2010", 'Normal', 'gostaria de o consultar pessoalmente'],
+        [4,'Clinton Berclidio', 'joao@mail.com', 123456789, "12/19/2010", 'Normal', 'gostaria de o consultar pessoalmente'],
+        [5,'A traicao da Julieta','joao@mail.com', 123456789, "12/19/2010", 'Normal', 'gostaria de o consultar pessoalmente']
+        ]
+
+# lista para o cabeçário
+
+tabela_head = ['ID','Nome',  'email','telefone', 'Data', 'Estado','Sobre']
+
+# Criando a tabela
+
+tree = ttk.Treeview(frame_direita, selectmode="extended", columns=tabela_head, show="headings")
+
+# vertical scrollbar
+
+vsb = ttk.Scrollbar(frame_direita, orient="vertical", command=tree.yview)
+
+# horizontal scrollbar
+
+hsb = ttk.Scrollbar( frame_direita, orient="horizontal", command=tree.xview)
+
+tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+tree.grid(column=0, row=0, sticky='nsew')
+vsb.grid(column=1, row=0, sticky='ns')
+hsb.grid(column=0, row=1, sticky='ew')
+
+frame_direita.grid_rowconfigure(0, weight=12)
+
+
+hd=["nw","nw","nw","nw","nw","center","center"]
+h=[30,170,140,100,120,50,100]
+n=0
+
+for col in tabela_head:
+    tree.heading(col, text=col.title(), anchor=CENTER)
+    adjust the column's width to the header string
+    tree.column(col, width=h[n],anchor=hd[n])
+    
+    n+=1
+
+for item in lista:
+    tree.insert('', 'end', values=item)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# main
 janela.mainloop()
