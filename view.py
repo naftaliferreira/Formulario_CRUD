@@ -24,13 +24,13 @@ lista = [
     "Normal",
     "gostaria de consultar pessoalmente",
 ]
-"""
+
 # Função inserir informações
 with con:
     cur = con.cursor()
     query = "INSERT INTO formulario (nome, email, telefone, dia_em, estado, assunto) VALUES (?, ?, ?, ?, ?, ?)"
     cur.execute(query, lista)
-"""
+
 # Função acessar informações
 with con:
     cur = con.cursor()
@@ -46,4 +46,12 @@ lista = ['joao', '1']
 with con:
     cur = con.cursor()
     query = "UPDATE formulario SET nome=? WHERE id=?"
+    cur.execute(query, lista)
+
+# Função para deletar informações
+lista = [1]
+
+with con:
+    cur = con.cursor()
+    query = "DELETE FROM formulario WHERE id=?"
     cur.execute(query, lista)
