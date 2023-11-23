@@ -203,7 +203,7 @@ b_delete.place(x=205, y=340)
 
 ################### frame direita
 def mostrar():
-    lista = []
+    lista = mostrar_info()
 
     # lista para o cabeçário
 

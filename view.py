@@ -15,7 +15,7 @@ import sqlite3 as lite
 # criando conexão
 con = lite.connect("dados.db")
 
-
+"""
 lista = [
     "Joao Futi",
     "joao@mail.com",
@@ -31,15 +31,24 @@ with con:
     query = "INSERT INTO formulario (nome, email, telefone, dia_em, estado, assunto) VALUES (?, ?, ?, ?, ?, ?)"
     cur.execute(query, lista)
 
+"""
+
+
 # Função acessar informações
-with con:
-    cur = con.cursor()
-    query = "SELECT * FROM formulario"
-    cur.execute(query)
-    info = cur.fetchall()
-    print(info)
+def mostrar_info():
+    lista = []
+    with con:
+        cur = con.cursor()
+        query = "SELECT * FROM formulario"
+        cur.execute(query)
+        info = cur.fetchall()
+
+        for i in info:
+            lista.append(i)
+    return lista
 
 
+"""
 # Função para atualizar informações
 lista = ['joao', '1']
 
@@ -55,3 +64,4 @@ with con:
     cur = con.cursor()
     query = "DELETE FROM formulario WHERE id=?"
     cur.execute(query, lista)
+"""
