@@ -38,3 +38,12 @@ with con:
     cur.execute(query)
     info = cur.fetchall()
     print(info)
+
+
+# Função para atualizar informações
+lista = ['joao', '1']
+
+with con:
+    cur = con.cursor()
+    query = "UPDATE formulario SET nome=? WHERE id=?"
+    cur.execute(query, lista)
