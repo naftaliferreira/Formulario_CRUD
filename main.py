@@ -57,10 +57,11 @@ app_nome = Label(
 )
 app_nome.place(x=10, y=20)
 
+# variavel tree global
+global tree
+
 
 # Função inserir
-
-
 def inserir():
     nome = e_name.get()
     email = e_email.get()
@@ -74,7 +75,7 @@ def inserir():
     if nome == "":
         messagebox.showerror("Erro", "O nome não foi inserido")
     else:
-        inserir_info(lista)
+        atualizar_info(lista)
         messagebox.showinfo("Sucesso", "Os dados foram inseridos com sucesso!")
 
         e_name.delete(0, "end")
@@ -88,6 +89,82 @@ def inserir():
         widget.destroy()
 
     mostrar()
+
+
+# Função atualizar
+
+
+def atualizar():
+    try:
+        treev_dados = tree.focus()
+        treev_dicionario = tree.item(treev_dados)
+        tree_lista = treev_dicionario["values"]
+
+        valor = tree_lista[0]
+
+        e_name.delete(0, "end")
+        e_email.delete(0, "end")
+        e_telefone.delete(0, "end")
+        e_cal.delete(0, "end")
+        e_estado.delete(0, "end")
+        e_assunto.delete(0, "end")
+
+        e_name.insert(0, tree_lista[1])
+        e_email.insert(0, tree_lista[2])
+        e_telefone.insert(0, tree_lista[3])
+        e_cal.insert(0, tree_lista[4])
+        e_estado.insert(0, tree_lista[5])
+        e_assunto.insert(0, tree_lista[6])
+
+        # Função inserir
+        def update():
+            nome = e_name.get()
+            email = e_email.get()
+            telefone = e_telefone.get()
+            dia = e_cal.get()
+            estado = e_estado.get()
+            assunto = e_assunto.get()
+
+            lista = [nome, email, telefone, dia, estado, assunto]
+
+            if nome == "":
+                messagebox.showerror("Erro", "O nome não foi inserido")
+            else:
+                inserir_info(lista)
+                messagebox.showinfo(
+                    "Sucesso", "Os dados foram atualizados com sucesso!"
+                )
+
+                e_name.delete(0, "end")
+                e_email.delete(0, "end")
+                e_telefone.delete(0, "end")
+                e_cal.delete(0, "end")
+                e_estado.delete(0, "end")
+                e_assunto.delete(0, "end")
+
+            for widget in frame_direito.winfo_children():
+                widget.destroy()
+
+            # botão atualizar
+
+            b_confirmar = Button(
+                frame_baixo,
+                command=atualizar,
+                text="Confirmar",
+                width=10,
+                font=("Ivy 7 bold"),
+                bg=co2,
+                fg=co1,
+                relief="raised",
+                overrelief="ridge",
+            )
+            b_confirmar.place(x=110, y=380)
+
+            mostrar()
+
+    except IndexError:
+        messagebox.showerror("Erro", "Selecione um dos dados na tabela!")
+
 
 ################### Configurando frame baixo
 # Nome
@@ -238,6 +315,8 @@ b_delete.place(x=205, y=340)
 
 ################### frame direita
 def mostrar():
+    global tree
+
     lista = mostrar_info()
 
     # lista para o cabeçário
