@@ -71,6 +71,19 @@ def inserir():
 
     lista = [nome, email, telefone, dia, estado, assunto]
 
+    if nome == "":
+        messagebox.showerror("Erro", "O nome não foi inserido")
+    else:
+        inserir_info(lista)
+        messagebox.showinfo("Sucesso", "Os dados foram inseridos com sucesso!")
+
+        e_name.delete(0, "end")
+        e_email.delete(0, "end")
+        e_telefone.delete(0, "end")
+        e_cal.delete(0, "end")
+        e_estado.delete(0, "end")
+        e_assunto.delete(0, "end")
+
 
 ################### Configurando frame baixo
 # Nome
