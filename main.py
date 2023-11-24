@@ -3,6 +3,7 @@ from cgitb import text
 from tkinter import *
 from tkinter import font
 from tkinter import ttk
+from tkinter import messagebox
 
 # importando tkcalendar
 from tkcalendar import Calendar, DateEntry
@@ -55,6 +56,21 @@ app_nome = Label(
     relief="flat",
 )
 app_nome.place(x=10, y=20)
+
+
+# Função inserir
+
+
+def inserir():
+    nome = e_name.get()
+    email = e_email.get()
+    telefone = e_telefone.get()
+    dia = e_cal.get()
+    estado = e_estado.get()
+    assunto = e_assunto.get()
+
+    lista = [nome, email, telefone, dia, estado, assunto]
+
 
 ################### Configurando frame baixo
 # Nome
@@ -145,7 +161,7 @@ e_estado = Entry(
 e_estado.place(x=160, y=220)
 
 # Sobre
-l_sobre = Label(
+l_assunto = Label(
     frame_baixo,
     text="Informação extra *",
     anchor=NW,
@@ -154,10 +170,10 @@ l_sobre = Label(
     fg=co4,
     relief="flat",
 )
-l_sobre.place(x=15, y=260)
+l_assunto.place(x=15, y=260)
 
-e_sobre = Entry(frame_baixo, width=45, justify="left", relief="solid")
-e_sobre.place(x=15, y=290)
+e_assunto = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_assunto.place(x=15, y=290)
 
 # botão inserir
 
@@ -201,6 +217,7 @@ b_delete = Button(
 )
 b_delete.place(x=205, y=340)
 
+
 ################### frame direita
 def mostrar():
     lista = mostrar_info()
@@ -208,7 +225,6 @@ def mostrar():
     # lista para o cabeçário
 
     tabela_head = ["ID", "Nome", "email", "telefone", "Data", "Estado", "Sobre"]
-
 
     # Criando a tabela
     tree = ttk.Treeview(
@@ -231,7 +247,6 @@ def mostrar():
 
     frame_direito.grid_rowconfigure(0, weight=12)
 
-
     hd = ["nw", "nw", "nw", "nw", "nw", "center", "center"]
     h = [30, 170, 140, 100, 120, 50, 100]
     n = 0
@@ -245,6 +260,7 @@ def mostrar():
 
     for item in lista:
         tree.insert("", "end", values=item)
+
 
 # chamando a função mostrar
 
