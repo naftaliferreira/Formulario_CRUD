@@ -84,6 +84,10 @@ def inserir():
         e_estado.delete(0, "end")
         e_assunto.delete(0, "end")
 
+    for widget in frame_direito.winfo_children():
+        widget.destroy()
+
+    mostrar()
 
 ################### Configurando frame baixo
 # Nome
@@ -192,6 +196,7 @@ e_assunto.place(x=15, y=290)
 
 b_insert = Button(
     frame_baixo,
+    command=inserir,
     text="Inserir",
     width=10,
     font=("Ivy 9 bold"),
