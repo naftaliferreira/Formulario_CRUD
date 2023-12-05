@@ -116,7 +116,7 @@ def atualizar():
         e_estado.insert(0, tree_lista[5])
         e_assunto.insert(0, tree_lista[6])
 
-        # Função inserir
+        # Função atualizar
         def update():
             nome = e_name.get()
             email = e_email.get()
@@ -144,6 +144,22 @@ def atualizar():
 
             for widget in frame_direito.winfo_children():
                 widget.destroy()
+
+            # botão confirmar
+            b_confirmar = Button(
+                frame_baixo,
+                command=update,
+                text="confirmar",
+                width=10,
+                font=("Ivy 9 bold"),
+                bg=co2,
+                fg=co1,
+                relief="raised",
+                overrelief="ridge",
+            )
+            b_update.place(x=110, y=340)
+
+            mostrar()
 
             # botão atualizar
 
