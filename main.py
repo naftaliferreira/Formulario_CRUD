@@ -130,7 +130,7 @@ def atualizar():
             if nome == "":
                 messagebox.showerror("Erro", "O nome não foi inserido")
             else:
-                inserir_info(lista)
+                atualizar_info(lista)
                 messagebox.showinfo(
                     "Sucesso", "Os dados foram atualizados com sucesso!"
                 )
@@ -151,13 +151,13 @@ def atualizar():
                 command=update,
                 text="confirmar",
                 width=10,
-                font=("Ivy 9 bold"),
+                font=("Ivy 7 bold"),
                 bg=co2,
                 fg=co1,
                 relief="raised",
                 overrelief="ridge",
             )
-            b_update.place(x=110, y=340)
+            b_update.place(x=110, y=380)
 
             mostrar()
 
@@ -305,6 +305,7 @@ b_insert.place(x=15, y=340)
 b_update = Button(
     frame_baixo,
     text="Atualizar",
+    command=atualizar,
     width=10,
     font=("Ivy 9 bold"),
     bg=co2,
