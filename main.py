@@ -174,7 +174,7 @@ def atualizar():
                 relief="raised",
                 overrelief="ridge",
             )
-            b_confirmar.place(x=110, y=380)
+            b_confirmar.place(x=180, y=360)
 
             mostrar()
 
