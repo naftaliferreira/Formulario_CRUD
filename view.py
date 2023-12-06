@@ -1,19 +1,11 @@
-# importando SQLite
+# importações
+import sys
 import sqlite3 as lite
+from datetime import datetime
 
-
-# CRUD
-
-# Create = Inserir / Criar
-
-# Read = Acessar / Mostrar
-
-# Update = Atualizar
-
-# Delete = Excluir / Apagar
 
 # criando conexão
-con = lite.connect("dados.db")
+con = lite.connect("form.db")
 
 
 # Função inserir informações
