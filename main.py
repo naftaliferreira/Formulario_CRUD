@@ -1,17 +1,21 @@
-# importando o tkinter
-from cgitb import text
 from tkinter import *
-from tkinter import font
-from tkinter import ttk
+from tkinter import scrolledtext
+from tkinter import Tk, StringVar, ttk
+import tkinter.font as tkFont
 from tkinter import messagebox
 
-# importando tkcalendar
-from tkcalendar import Calendar, DateEntry
 
-# importando views
+################# tkcalendar ###############
+from tkcalendar import Calendar, DateEntry
+from datetime import date
+
+################ importando view ######
+
 from view import *
 
+
 ################# cores ###############
+
 co0 = "#f0f3f5"  # Preta
 co1 = "#feffff"  # branca
 co2 = "#4fa882"  # verde
@@ -21,364 +25,341 @@ co5 = "#e06636"  # - profit
 co6 = "#038cfc"  # azul
 co7 = "#ef5350"  # vermelha
 co8 = "#263238"  # + verde
-co9 = "#e9edf5"  # sky blue
+co9 = "#e9edf5"  # + verde
 
-
-################### criando janela
+################# criando janela ###############
 
 janela = Tk()
 janela.title("")
 janela.geometry("1043x453")
-janela.configure(bg=co9)
-janela.resizable(
-    width=False, height=False
-)  # impede que a janela tenha o seu tamanho reajustado com o mouse
+janela.configure(background=co9)
+janela.resizable(width=FALSE, height=FALSE)
 
-################### dividindo a janela
 
-frame_cima = Frame(janela, width=310, height=50, bg=co2, relief="flat")
-frame_cima.grid(row=0, column=0)
+################# Frames ####################
 
-frame_baixo = Frame(janela, width=310, height=403, bg=co1, relief="flat")
-frame_baixo.grid(row=1, column=0, sticky=NSEW, padx=0, pady=1)
+frameCima = Frame(
+    janela,
+    width=310,
+    height=50,
+    bg=co2,
+    relief="flat",
+)
+frameCima.grid(row=0, column=0)
 
-frame_direito = Frame(janela, width=588, height=403, bg=co1, relief="flat")
-frame_direito.grid(row=0, column=1, rowspan=2, padx=1, pady=1, sticky=NSEW)
+frameBaixo = Frame(janela, width=310, height=403, bg=co1, relief="flat")
+frameBaixo.grid(row=1, column=0, pady=1, padx=0, sticky=NSEW)
 
-################### label cima
-app_nome = Label(
-    frame_cima,
-    text="Formulário de consultoria",
+frameDireita = Frame(janela, width=588, height=403, bg=co1, relief="flat")
+frameDireita.grid(row=0, column=1, rowspan=2, pady=0, padx=1, sticky=NSEW)
+
+
+app_ = Label(
+    frameCima,
+    text="Formulário de Consultoria",
     anchor=NW,
     font=("Ivy 13 bold"),
     bg=co2,
     fg=co1,
-    relief="flat",
 )
-app_nome.place(x=10, y=20)
+app_.place(x=10, y=20)
 
-# variavel tree global
 global tree
 
+# funcao inserir
 
-# Função inserir
+
 def inserir():
-    nome = e_name.get()
+    nome = e_nome.get()
     email = e_email.get()
-    telefone = e_telefone.get()
-    dia = e_cal.get()
+    telefone = e_tel.get()
+    dia = cal.get()
     estado = e_estado.get()
     assunto = e_assunto.get()
 
-    lista = [nome, email, telefone, dia, estado, assunto]
+    lista_inserir = [nome, email, telefone, dia, estado, assunto]
 
-    if nome == "":
-        messagebox.showerror("Erro", "O nome não foi inserido")
+    if e_nome.get() == "":
+        messagebox.showerror("Erro", "Preencha todos os campos")
     else:
-        atualizar_info(lista)
-        messagebox.showinfo("Sucesso", "Os dados foram inseridos com sucesso!")
+        inserir_form(lista_inserir)
 
-        e_name.delete(0, "end")
+        messagebox.showinfo("Sucesso", "Os dados foram inseridos com sucesso")
+
+        e_nome.delete(0, "end")
         e_email.delete(0, "end")
-        e_telefone.delete(0, "end")
-        e_cal.delete(0, "end")
+        e_tel.delete(0, "end")
+        cal.delete(0, "end")
         e_estado.delete(0, "end")
         e_assunto.delete(0, "end")
 
-    for widget in frame_direito.winfo_children():
-        widget.destroy()
+        for widget in frameDireita.winfo_children():
+            widget.destroy()
 
-    mostrar()
+        mostrar()
 
 
-# Função atualizar
+# funcao atualizar
 
 
 def atualizar():
     try:
         treev_dados = tree.focus()
         treev_dicionario = tree.item(treev_dados)
-        tree_lista = treev_dicionario["values"]
+        treev_lista = treev_dicionario["values"]
+        valor = treev_lista[0]
 
-        valor = tree_lista[0]
-
-        e_name.delete(0, "end")
+        e_nome.delete(0, "end")
         e_email.delete(0, "end")
-        e_telefone.delete(0, "end")
-        e_cal.delete(0, "end")
+        e_tel.delete(0, "end")
+        cal.delete(0, "end")
         e_estado.delete(0, "end")
         e_assunto.delete(0, "end")
 
-        e_name.insert(0, tree_lista[1])
-        e_email.insert(0, tree_lista[2])
-        e_telefone.insert(0, tree_lista[3])
-        e_cal.insert(0, tree_lista[4])
-        e_estado.insert(0, tree_lista[5])
-        e_assunto.insert(0, tree_lista[6])
+        e_nome.insert(0, treev_lista[1])
+        e_email.insert(0, treev_lista[2])
+        e_tel.insert(0, treev_lista[3])
+        cal.insert(0, treev_lista[4])
+        e_estado.insert(0, treev_lista[5])
+        e_assunto.insert(0, treev_lista[6])
 
-        # Função atualizar
         def update():
-            nome = e_name.get()
+            nome = e_nome.get()
             email = e_email.get()
-            telefone = e_telefone.get()
-            dia = e_cal.get()
+            telefone = e_tel.get()
+            dia = cal.get()
             estado = e_estado.get()
             assunto = e_assunto.get()
 
-            lista = [nome, email, telefone, dia, estado, assunto]
+            lista_atualizar = [nome, email, telefone, dia, estado, assunto, valor]
 
-            if nome == "":
-                messagebox.showerror("Erro", "O nome não foi inserido")
+            if e_nome.get() == "":
+                messagebox.showerror("Erro", "Preencha todos os campos")
             else:
-                atualizar_info(lista)
-                messagebox.showinfo(
-                    "Sucesso", "Os dados foram atualizados com sucesso!"
-                )
+                atualizar_form(lista_atualizar)
 
-                e_name.delete(0, "end")
+                messagebox.showinfo("Sucesso", "Os dados foram atualizados com sucesso")
+
+                e_nome.delete(0, "end")
                 e_email.delete(0, "end")
-                e_telefone.delete(0, "end")
-                e_cal.delete(0, "end")
+                e_tel.delete(0, "end")
+                cal.delete(0, "end")
                 e_estado.delete(0, "end")
                 e_assunto.delete(0, "end")
 
-            for widget in frame_direito.winfo_children():
-                widget.destroy()
+                botao_confirmar.destroy()
 
-            # botão confirmar
-            b_confirmar = Button(
-                frame_baixo,
-                command=update,
-                text="confirmar",
-                width=10,
-                font=("Ivy 7 bold"),
-                bg=co2,
-                fg=co1,
-                relief="raised",
-                overrelief="ridge",
-            )
-            b_update.place(x=110, y=380)
+                for widget in frameDireita.winfo_children():
+                    widget.destroy()
 
-            mostrar()
+                mostrar()
 
-            # botão atualizar
-
-            b_confirmar = Button(
-                frame_baixo,
-                command=atualizar,
-                text="Confirmar",
-                width=10,
-                font=("Ivy 7 bold"),
-                bg=co2,
-                fg=co1,
-                relief="raised",
-                overrelief="ridge",
-            )
-            b_confirmar.place(x=180, y=360)
-
-            mostrar()
+        botao_confirmar = Button(
+            frameBaixo,
+            command=update,
+            text="Confirmar",
+            width=10,
+            height=1,
+            bg=co2,
+            fg=co1,
+            font=("Ivy 7 bold"),
+            relief=RAISED,
+            overrelief=RIDGE,
+        )
+        botao_confirmar.place(x=105, y=380)
 
     except IndexError:
-        messagebox.showerror("Erro", "Selecione um dos dados na tabela!")
+        messagebox.showerror("Erro", "Seleciona um dos dados na tabela")
 
 
-################### Configurando frame baixo
-# Nome
+# funcao deletar
+def deletar():
+    try:
+        treev_dados = tree.focus()
+        treev_dicionario = tree.item(treev_dados)
+        treev_lista = treev_dicionario["values"]
+        valor = treev_lista[0]
+
+        deletar_form([valor])
+        print(valor)
+
+        messagebox.showinfo("Sucesso", "Os dados foram deletados com sucesso")
+
+        for widget in frameDireita.winfo_children():
+            widget.destroy()
+
+        mostrar()
+
+    except IndexError:
+        messagebox.showerror("Erro", "Seleciona um dos dados na tabela")
+
+
 l_nome = Label(
-    frame_baixo,
-    text="Nome *",
-    anchor=NW,
-    font=("Ivy 10 bold"),
-    bg=co1,
-    fg=co4,
-    relief="flat",
+    frameBaixo, text="Nome *", height=1, anchor=NW, font=("Ivy 10 bold"), bg=co1, fg=co4
 )
 l_nome.place(x=10, y=10)
+e_nome = Entry(frameBaixo, width=45, justify="left", relief="solid")
+e_nome.place(x=15, y=40)
 
-e_name = Entry(frame_baixo, width=45, justify="left", relief="solid")
-e_name.place(x=15, y=40)
-
-# email
 l_email = Label(
-    frame_baixo,
+    frameBaixo,
     text="email *",
+    height=1,
     anchor=NW,
     font=("Ivy 10 bold"),
     bg=co1,
     fg=co4,
-    relief="flat",
 )
 l_email.place(x=10, y=70)
-
-e_email = Entry(frame_baixo, width=45, justify="left", relief="solid")
+e_email = Entry(frameBaixo, width=45, justify="left", relief="solid")
 e_email.place(x=15, y=100)
 
-# telefone
-l_telefone = Label(
-    frame_baixo,
+l_tel = Label(
+    frameBaixo,
     text="telefone *",
+    height=1,
     anchor=NW,
     font=("Ivy 10 bold"),
     bg=co1,
     fg=co4,
-    relief="flat",
 )
-l_telefone.place(x=10, y=130)
+l_tel.place(x=10, y=130)
+e_tel = Entry(frameBaixo, width=45, justify="left", relief="solid")
+e_tel.place(x=15, y=160)
 
-e_telefone = Entry(frame_baixo, width=45, justify="left", relief="solid")
-e_telefone.place(x=15, y=160)
-
-# Data da consulta
 l_cal = Label(
-    frame_baixo,
+    frameBaixo,
     text="Data da consulta *",
+    height=1,
     anchor=NW,
     font=("Ivy 10 bold"),
     bg=co1,
     fg=co4,
-    relief="flat",
 )
-l_cal.place(x=15, y=190)
-
-e_cal = DateEntry(
-    frame_baixo,
+l_cal.place(x=10, y=190)
+cal = DateEntry(
+    frameBaixo,
     width=12,
     background="darkblue",
     foreground="white",
     borderwidth=2,
-    year=2023,
+    year=2020,
 )
-e_cal.place(x=15, y=220)
+cal.place(x=15, y=220)
 
-# Estado
 l_estado = Label(
-    frame_baixo,
+    frameBaixo,
     text="Estado da consulta *",
+    height=1,
     anchor=NW,
     font=("Ivy 10 bold"),
     bg=co1,
     fg=co4,
-    relief="flat",
 )
 l_estado.place(x=160, y=190)
-
-e_estado = Entry(
-    frame_baixo,
-    width=20,
-    justify="left",
-    relief="solid",
-)
+e_estado = Entry(frameBaixo, width=20, justify="left", relief="solid")
 e_estado.place(x=160, y=220)
 
-# Sobre
 l_assunto = Label(
-    frame_baixo,
-    text="Informação extra *",
+    frameBaixo,
+    text="Consulta sobre *",
+    height=1,
     anchor=NW,
     font=("Ivy 10 bold"),
     bg=co1,
     fg=co4,
-    relief="flat",
 )
-l_assunto.place(x=15, y=260)
-
-e_assunto = Entry(frame_baixo, width=45, justify="left", relief="solid")
+l_assunto.place(x=10, y=260)
+e_assunto = Entry(frameBaixo, width=45, justify="left", relief="solid")
 e_assunto.place(x=15, y=290)
 
-# botão inserir
 
-b_insert = Button(
-    frame_baixo,
+botao_inserir = Button(
+    frameBaixo,
     command=inserir,
     text="Inserir",
     width=10,
-    font=("Ivy 9 bold"),
+    height=1,
     bg=co6,
     fg=co1,
-    relief="raised",
-    overrelief="ridge",
+    font=("Ivy 7 bold"),
+    relief=RAISED,
+    overrelief=RIDGE,
 )
-b_insert.place(x=15, y=340)
+botao_inserir.place(x=15, y=340)
 
-# botão atualizar
-
-b_update = Button(
-    frame_baixo,
-    text="Atualizar",
+botao_atualizar = Button(
+    frameBaixo,
     command=atualizar,
+    text="Atualizar",
     width=10,
-    font=("Ivy 9 bold"),
+    height=1,
     bg=co2,
     fg=co1,
-    relief="raised",
-    overrelief="ridge",
+    font=("Ivy 7 bold"),
+    relief=RAISED,
+    overrelief=RIDGE,
 )
-b_update.place(x=110, y=340)
+botao_atualizar.place(x=105, y=340)
 
-# botão deletar
-
-b_delete = Button(
-    frame_baixo,
+botao_deletar = Button(
+    frameBaixo,
+    command=deletar,
     text="Deletar",
     width=10,
-    font=("Ivy 9 bold"),
+    height=1,
     bg=co7,
     fg=co1,
-    relief="raised",
-    overrelief="ridge",
+    font=("Ivy 7 bold"),
+    relief=RAISED,
+    overrelief=RIDGE,
 )
-b_delete.place(x=205, y=340)
+botao_deletar.place(x=190, y=340)
 
 
-################### frame direita
+################# frame tree ####################
+
+
+# funcao para mostrar
 def mostrar():
+    # creating a treeview with dual scrollbars
+    list_header = ["ID", "Nome", "email", "telefone", "Data", "Estado", "Sobre"]
+
+    df_list = selecionar_form()
+
     global tree
 
-    lista = mostrar_info()
-
-    # lista para o cabeçário
-
-    tabela_head = ["ID", "Nome", "email", "telefone", "Data", "Estado", "Sobre"]
-
-    # Criando a tabela
     tree = ttk.Treeview(
-        frame_direito, selectmode="extended", columns=tabela_head, show="headings"
+        frameDireita, selectmode="extended", columns=list_header, show="headings"
     )
-
     # vertical scrollbar
-
-    vsb = ttk.Scrollbar(frame_direito, orient="vertical", command=tree.yview)
-
+    vsb = ttk.Scrollbar(frameDireita, orient="vertical", command=tree.yview)
     # horizontal scrollbar
-
-    hsb = ttk.Scrollbar(frame_direito, orient="horizontal", command=tree.xview)
+    hsb = ttk.Scrollbar(frameDireita, orient="horizontal", command=tree.xview)
 
     tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
 
     tree.grid(column=0, row=0, sticky="nsew")
     vsb.grid(column=1, row=0, sticky="ns")
     hsb.grid(column=0, row=1, sticky="ew")
-
-    frame_direito.grid_rowconfigure(0, weight=12)
+    frameDireita.grid_rowconfigure(0, weight=12)
 
     hd = ["nw", "nw", "nw", "nw", "nw", "center", "center"]
     h = [30, 170, 140, 100, 120, 50, 100]
     n = 0
 
-    for col in tabela_head:
+    for col in list_header:
         tree.heading(col, text=col.title(), anchor=CENTER)
         # adjust the column's width to the header string
         tree.column(col, width=h[n], anchor=hd[n])
 
         n += 1
 
-    for item in lista:
+    for item in df_list:
         tree.insert("", "end", values=item)
 
 
-# chamando a função mostrar
-
 mostrar()
 
-# main
+
 janela.mainloop()

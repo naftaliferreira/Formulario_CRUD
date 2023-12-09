@@ -1,51 +1,89 @@
-# importações
 import sys
 import sqlite3 as lite
 from datetime import datetime
 
 
-# criando conexão
+# Criando conexão
 con = lite.connect("form.db")
 
+lista = [
+    [
+        "Joao Futi Muanda",
+        "joao@mail.com",
+        123456789,
+        "12/19/2010",
+        "Normal",
+        "gostaria de o consultar pessoalmente",
+    ],
+    [
+        "Fortnato Mpngo",
+        "joao@mail.com",
+        123456789,
+        "12/19/2010",
+        "Normal",
+        "gostaria de o consultar pessoalmente",
+    ],
+    [
+        "Usando Python",
+        "joao@mail.com",
+        123456789,
+        "12/19/2010",
+        "Normal",
+        "gostaria de o consultar pessoalmente",
+    ],
+    [
+        "Clinton Berclidio",
+        "joao@mail.com",
+        123456789,
+        "12/19/2010",
+        "Normal",
+        "gostaria de o consultar pessoalmente",
+    ],
+    [
+        "A traicao da Julieta",
+        "joao@mail.com",
+        123456789,
+        "12/19/2010",
+        "Normal",
+        "gostaria de o consultar pessoalmente",
+    ],
+]
 
-# Função inserir informações
-def inserir_info(i):
+
+# Inserir formulario
+def inserir_form(i):
     with con:
         cur = con.cursor()
-        query = "INSERT INTO formulario (nome, email, telefone, dia_em, estado, assunto) VALUES (?, ?, ?, ?, ?, ?)"
+        query = "INSERT INTO Formulario (nome,email,telefone,dia_em, estado, assunto) VALUES (?,?,?,?,?,?)"
         cur.execute(query, i)
 
 
-# Função acessar informações
-def mostrar_info():
-    lista = []
+# Deletar formulario
+def deletar_form(i):
     with con:
         cur = con.cursor()
-        query = "SELECT * FROM formulario"
-        cur.execute(query)
-        info = cur.fetchall()
-
-        for i in info:
-            lista.append(i)
-    return lista
-
-
-# Função para atualizar informações
-
-
-def atualizar_info(i):
-    with con:
-        cur = con.cursor()
-        query = "UPDATE formulario SET nome=? email=? telefone=? dia_em=? estado=? assunto=? WHERE id=?"
+        query = "DELETE FROM Formulario WHERE id=?"
         cur.execute(query, i)
 
 
-# Função para deletar informações
-lista = [1]
-"""
-with con:
-    cur = con.cursor()
-    query = "DELETE FROM formulario WHERE id=?"
-    cur.execute(query, lista)
+# Atualizar formulario
+def atualizar_form(i):
+    with con:
+        cur = con.cursor()
+        query = "UPDATE Formulario SET nome=?, email=?, telefone=?, dia_em=? , estado=?, assunto=?  WHERE id=?"
+        cur.execute(query, i)
 
-"""
+
+# Selecionar categoria
+def selecionar_form():
+    lista_form = []
+    with con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM Formulario")
+        rows = cur.fetchall()
+        for row in rows:
+            lista_form.append(row)
+    return lista_form
+
+
+listas = selecionar_form()
